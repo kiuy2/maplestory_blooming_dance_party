@@ -22,9 +22,6 @@ document.addEventListener('keydown', function(event) {
     var input = document.getElementById("input");
     var img = document.createElement("img");
     img.className = "arrows";
-    
-    /*console.log(input.childNodes.length);*/
-    console.log(img.src);
 
     switch(event.code) {
         case "ArrowLeft":
