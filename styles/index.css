@@ -106,6 +106,12 @@ p {
     left: 1169px;
 }
 
+#cheer0 {
+    position: absolute;
+    top: 530px;
+    left: 1040px;
+}
+
 #stamp {
     position: absolute;
     top: 690px;
