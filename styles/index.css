@@ -56,10 +56,14 @@ li {
 
 p {
     font-family: 'Jua', sans-serif;
+}
+
+#bgmbox p {
     font-size: 24px;
     margin: 0px;
     margin-top: 10px;
     color: white;
+
 }
 
 #back {
@@ -99,5 +103,12 @@ p {
 }
 
 footer {
-    
+    width: 1557px;
+}
+
+footer p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 24px;
+    color:rgba( 50, 50, 50, 1);
 }
