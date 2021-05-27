@@ -88,8 +88,22 @@ p {
     background-color: rgba( 0, 0, 0, 0.5 );;
 }
 
-#front {
+#screen {
     position: absolute;
+    top: 170px;
+    left: 410px;
+}
+
+#border {
+    position: absolute;
+    top: 68px;
+    left: 273px;
+}
+
+#NPC0 {
+    position: absolute;
+    top: 262px;
+    left: 1169px;
 }
 
 #stamp {
