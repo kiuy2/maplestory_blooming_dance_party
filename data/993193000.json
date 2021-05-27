@@ -1,0 +1,100 @@
+{
+    "info": {
+
+    },
+    "back": [
+        {
+            "bS": "18thEvent",
+            "front": 0,
+            "ani": 0,
+            "no": 2,
+            "f": 0,
+            "w": 0,
+            "x": 0,
+            "y": 0,
+            "rx": 0,
+            "ry": 0,
+            "wx": 0,
+            "wy": 0,
+            "type": 3,
+            "cx": 99,
+            "cy": 99,
+            "a": 255,
+            "backTags": null
+        },
+        {
+            "bS": "18thEvent",
+            "front": 0,
+            "ani": 0,
+            "no": 0,
+            "f": 0,
+            "w": 0,
+            "x": 0,
+            "y": -280,
+            "rx": -100,
+            "ry": 0,
+            "wx": 0,
+            "wy": 0,
+            "type": 1,
+            "cx": 99,
+            "cy": 0,
+            "a": 255,
+            "backTags": null
+        },
+        {
+            "bS": "18thEvent",
+            "front": 0,
+            "ani": 0,
+            "no": 3,
+            "f": 0,
+            "w": 0,
+            "x": -250,
+            "y": -330,
+            "rx": -5,
+            "ry": -30,
+            "wx": 0,
+            "wy": 0,
+            "type": 1,
+            "cx": 3000,
+            "cy": 0,
+            "a": 255,
+            "backTags": null,
+            "flowX": -1,
+            "flowY": 0
+        }
+    ],
+    "life": [
+        {
+            "type": "n",
+            "id": "9062539",
+            "x": 231,
+            "y": 27,
+            "mobTime": 0,
+            "f": 0,
+            "hide": 0,
+            "forcedZPage": -1,
+            "forcedZMass": -1,
+            "fh": 0,
+            "cy": 27,
+            "rx0": 181,
+            "rx1": 281,
+            "nofoothold": 1
+        },
+        {
+            "type": "n",
+            "id": "9062542",
+            "x": -580,
+            "y": 622,
+            "mobTime": 0,
+            "f": 0,
+            "hide": 0,
+            "forcedZPage": -1,
+            "forcedZMass": -1,
+            "fh": 0,
+            "cy": 622,
+            "rx0": -630,
+            "rx1": -530,
+            "nofoothold": 1
+        }
+    ]
+}

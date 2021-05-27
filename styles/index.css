@@ -1,0 +1,103 @@
+body {
+    background-image: url("../images/y-so-serious-white.png");
+    margin: 0px;
+    overflow-y: hidden;
+}
+
+#bgmbox {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#helpbox {
+    position: relative;
+    top: 40px;
+    left: 1277px;
+    width: 180px;
+    background-color: rgba( 0, 0, 0, 0.5 );
+    padding: 25px;
+    border-radius: 5px;
+}
+
+#info {
+    display: flex;
+    margin-top: 10px;
+}
+#info-key {
+    text-align: right;
+}
+#info-value {
+    padding-left: 10px;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    text-align: center;
+    font-weight:800;
+    font-size: 26pt;
+    color: white;
+}
+
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: white;
+    margin: 5 0 5 0;
+}
+
+p {
+    font-family: 'Jua', sans-serif;
+    font-size: 24px;
+    margin: 0px;
+    margin-top: 10px;
+    color: white;
+}
+
+#back {
+    width: 1557;
+    height: 855;
+    background-image: url("../images/background_back.png");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-attachment: scroll;
+}
+
+#input {
+    position: absolute;
+    top: 284px;
+    left: 410px;
+    width: 650px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: rgba( 0, 0, 0, 0.5 );;
+}
+
+#front {
+    position: absolute;
+}
+
+#stamp {
+    position: absolute;
+    top: 690px;
+    left: 384px;
+}
+
+.arrows {
+    width: 50px;
+}
+
+footer {
+    
+}

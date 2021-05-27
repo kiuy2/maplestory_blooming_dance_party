@@ -1,0 +1,50 @@
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="styles/index.css">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="scripts/render.js"></script>
+        <script type="text/javascript" src="scripts/funcs.js"></script>
+        <title>Blooming Dance Party</title>
+    </head>
+
+    <body>
+        <div id="back" oncontextmenu="return false">
+            <span id="input"></span>
+            <img id="front" src="images/background_front.png">
+            <div id="bgmbox">
+                <audio controls loop id="bgm">
+                    <source src="audio/18th_Event.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+                <p>18th_Event BGM</p>
+            </div>
+            <div id="helpbox">
+                <h1>help</h1>
+                <div id="info">
+                    <ul id="info-key">
+                        <li>Arrows: </li>
+                        <li>Backspace: </li>
+                        <li>Enter: </li>
+                        <li>Space: </li>
+                        <li>H: </li>
+                    </ul>
+                    <ul id="info-value">
+                        <li>키 출력</li>
+                        <li>키 지우기</li>
+                        <li>모두 비우기</li>
+                        <li>BGM 재생</li>
+                        <li>도움말</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>
+        </footer>
+    </body>
+</html>
