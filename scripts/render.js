@@ -7,6 +7,7 @@ var stand_idx = 0;
 $(document).ready(function() {
     const objects = document.getElementById("objects");
     const NPC = document.createElement("img");
+    const cheer0 = document.createElement("img");
     const cheerleader = [];
     const dancer = document.createElement("div");
 
@@ -17,19 +18,26 @@ $(document).ready(function() {
     NPC.style.left = "1169px";
     NPC.src = "images/9062540.gif";
     objects.appendChild(NPC);
-    // cheerleaders
-    cheerleader.push(document.createElement("div"));
-    cheerleader[0].id = "cheerleader_0";
-    cheerleader[0].style.position = "absolute";
-    cheerleader[0].style.top = "530px";
-    cheerleader[0].style.left = "240px";
-    objects.appendChild(cheerleader[0]);
-    cheerleader.push(document.createElement("div"));
-    cheerleader[1].id = "cheerleader_1";
-    cheerleader[1].style.position = "absolute";
-    cheerleader[1].style.top = "530px";
-    cheerleader[1].style.left = "1040px";
-    objects.appendChild(cheerleader[1]);
+    // cheer0
+    cheer0.id = "cheer_0";
+    cheer0.style.position = "absolute";
+    cheer0.style.top = "521px";
+    cheer0.style.left = "226px";
+    cheer0.src = "images/cheer0.gif";
+    objects.appendChild(cheer0);
+    // // cheerleaders
+    // cheerleader.push(document.createElement("div"));
+    // cheerleader[0].id = "cheerleader_0";
+    // cheerleader[0].style.position = "absolute";
+    // cheerleader[0].style.top = "530px";
+    // cheerleader[0].style.left = "240px";
+    // objects.appendChild(cheerleader[0]);
+    // cheerleader.push(document.createElement("div"));
+    // cheerleader[1].id = "cheerleader_1";
+    // cheerleader[1].style.position = "absolute";
+    // cheerleader[1].style.top = "530px";
+    // cheerleader[1].style.left = "1040px";
+    // objects.appendChild(cheerleader[1]);
     // dancer
     dancer.id = "dancer";
     dancer.style.position = "absolute";
@@ -37,16 +45,16 @@ $(document).ready(function() {
     dancer.style.left = "545px";
     objects.appendChild(dancer);
 
-    // cheer
-    for (var i=0; i<1; i++) {
-        cheer_ani[i] = new Array();
-        for (var j=0; j<48; j++) {
-            cheer_ani[i].push(document.createElement("img"));
-            cheer_ani[i][j].src = "images/cheer"+i+"/"+j+".png";
-            cheer_ani[i][j].style.display = "none";
-            cheerleader[i].appendChild(cheer_ani[i][j]);
-        }
-    }
+    // // cheer
+    // for (var i=0; i<1; i++) {
+    //     cheer_ani[i] = new Array();
+    //     for (var j=0; j<48; j++) {
+    //         cheer_ani[i].push(document.createElement("img"));
+    //         cheer_ani[i][j].src = "images/cheer"+i+"/"+j+".png";
+    //         cheer_ani[i][j].style.display = "none";
+    //         cheerleader[i].appendChild(cheer_ani[i][j]);
+    //     }
+    // }
     // dance (stand)
     dancer_ani[0] = new Array();
     for (var i=0; i<6; i++) {
@@ -66,17 +74,17 @@ $(document).ready(function() {
         }
     }
 
-    setInterval(cheerlead, 90);
+    //setInterval(cheerlead, 90);
     dancer_ani[0][0].style.display = "block";
     prev_frame = dancer_ani[0][0];
     dance_stand();
 });
 
-function cheerlead() {
-    cheer_ani[0][cheer_idx].style.display = "none";
-    cheer_idx = (cheer_idx + 1) % 48;
-    cheer_ani[0][cheer_idx].style.display = "block";
-}
+// function cheerlead() {
+//     cheer_ani[0][cheer_idx].style.display = "none";
+//     cheer_idx = (cheer_idx + 1) % 48;
+//     cheer_ani[0][cheer_idx].style.display = "block";
+// }
 
 function dance_command() {
     prev_frame.style.display = "none";

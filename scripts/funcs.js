@@ -6,6 +6,9 @@ const helpUp = new Audio("audio/MenuUp.mp3");
 const helpDown = new Audio("audio/MenuDown.mp3");
 var bgm = [];
 var cur_bgm = 0;
+var bgmbar;
+var bgmbar_id;
+var bgmbar_x = 0;
 var help_visible = true;
 var printq = [];
 const inputq = [];
@@ -20,10 +23,17 @@ $(document).ready(function() {
     bgm.push(new Audio);
     bgm[0] = document.getElementById("bgm1");
     bgm[0].volume = 0.3;
+    bgm[0].controls = true;
     bgm.push(new Audio);
     bgm[1] = document.getElementById("bgm2");
     bgm[1].volume = 0.3;
+    //bgmbar = document.getElementById("bgm");
 });
+
+function bgmbar_ani() {
+    // $("#bgmbox p").
+    // bgmbar_x = 
+}
 
 document.addEventListener('keydown', function(event) {
     const input = document.getElementById("input");
@@ -62,9 +72,14 @@ document.addEventListener('keydown', function(event) {
             }
             break;
         case "Space":
-            if (bgm[cur_bgm].paused)
+            if (bgm[cur_bgm].paused) {
                 bgm[cur_bgm].play();
-            else bgm[cur_bgm].pause();
+                bgmbar_id = setInterval(bgmbar_ani, 90);
+            }
+            else {
+                bgm[cur_bgm].pause();
+                clearInterval(bgmbar_id);
+            }
             break;
         case "Backspace":
             erase.currentTime = 0;
@@ -107,3 +122,4 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
+
