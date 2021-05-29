@@ -1,142 +1,118 @@
-const dancer_stand = [];
-const dancer_left = [];
-const dancer_right = [];
-const dancer_up = [];
-const dancer_down = [];
+const cheer_ani = [];
+const dancer_ani = [];
 var prev_frame;
+var cheer_idx = 0;
 var stand_idx = 0;
 
 $(document).ready(function() {
     const objects = document.getElementById("objects");
     const NPC = document.createElement("img");
-    const cheer0 = document.createElement("img");
-    const cheer1 = document.createElement("img");
+    const cheerleader = [];
     const dancer = document.createElement("div");
 
     // NPC
+    NPC.id = "NPC_0";
     NPC.style.position = "absolute";
     NPC.style.top = "262px";
     NPC.style.left = "1169px";
     NPC.src = "images/9062540.gif";
     objects.appendChild(NPC);
-    // cheer0
-    cheer0.style.position = "absolute";
-    cheer0.style.top = "530px";
-    cheer0.style.left = "240px";
-    cheer0.src = "images/cheer0.gif";
-    objects.appendChild(cheer0);
-    // cheer1
-    cheer1.style.position = "absolute";
-    cheer1.style.top = "530px";
-    cheer1.style.left = "1040px";
-    cheer1.src = "images/cheer1.gif";
-    objects.appendChild(cheer1);
+    // cheerleaders
+    cheerleader.push(document.createElement("div"));
+    cheerleader[0].id = "cheerleader_0";
+    cheerleader[0].style.position = "absolute";
+    cheerleader[0].style.top = "530px";
+    cheerleader[0].style.left = "240px";
+    objects.appendChild(cheerleader[0]);
+    cheerleader.push(document.createElement("div"));
+    cheerleader[1].id = "cheerleader_1";
+    cheerleader[1].style.position = "absolute";
+    cheerleader[1].style.top = "530px";
+    cheerleader[1].style.left = "1040px";
+    objects.appendChild(cheerleader[1]);
     // dancer
+    dancer.id = "dancer";
     dancer.style.position = "absolute";
     dancer.style.top = "390px";
     dancer.style.left = "545px";
     objects.appendChild(dancer);
 
-    for (var i=0; i<6; i++) {
-        dancer_stand.push(document.createElement("img"));
-        dancer_stand[i].src = "images/9062538.img.stand.frames/"+String(i*120)+".png";
-        dancer_stand[i].style.display = "none";
-        dancer.appendChild(dancer_stand[i]);
+    // cheer
+    for (var i=0; i<1; i++) {
+        cheer_ani[i] = new Array();
+        for (var j=0; j<48; j++) {
+            cheer_ani[i].push(document.createElement("img"));
+            cheer_ani[i][j].src = "images/cheer"+i+"/"+j+".png";
+            cheer_ani[i][j].style.display = "none";
+            cheerleader[i].appendChild(cheer_ani[i][j]);
+        }
     }
-    dancer_stand[0].style.display = "block";
-    for (var i=0; i<12; i++) {
-        dancer_left.push(document.createElement("img"));
-        dancer_right.push(document.createElement("img"));
-        dancer_up.push(document.createElement("img"));
-        dancer_down.push(document.createElement("img"));
-        dancer_left[i].src = "images/9062538.img.left.frames/"+String(i*90)+".png";
-        dancer_right[i].src = "images/9062538.img.right.frames/"+String(i*90)+".png";
-        dancer_up[i].src = "images/9062538.img.up.frames/"+String(i*90)+".png";
-        dancer_down[i].src = "images/9062538.img.down.frames/"+String(i*90)+".png";
-        dancer_left[i].style.display = "none";
-        dancer_right[i].style.display = "none";
-        dancer_up[i].style.display = "none";
-        dancer_down[i].style.display = "none";
-        dancer.appendChild(dancer_left[i]);
-        dancer.appendChild(dancer_right[i]);
-        dancer.appendChild(dancer_up[i]);
-        dancer.appendChild(dancer_down[i]);
+    // dance (stand)
+    dancer_ani[0] = new Array();
+    for (var i=0; i<6; i++) {
+        dancer_ani[0].push(document.createElement("img"));
+        dancer_ani[0][i].src = "images/9062538.img.0.frames/"+String(i*120)+".png";
+        dancer_ani[0][i].style.display = "none";
+        dancer.appendChild(dancer_ani[0][i]);
+    }
+    // dance (each directions)
+    for (var i=1; i<5; i++) {
+        dancer_ani[i] = new Array();
+        for (var j=0; j<12; j++) {
+            dancer_ani[i].push(document.createElement("img"));
+            dancer_ani[i][j].src = "images/9062538.img."+i+".frames/"+String(j*90)+".png";
+            dancer_ani[i][j].style.display = "none";
+            dancer.appendChild(dancer_ani[i][j]);
+        }
     }
 
-    prev_frame = dancer_stand[0];
+    setInterval(cheerlead, 90);
+    dancer_ani[0][0].style.display = "block";
+    prev_frame = dancer_ani[0][0];
     dance_stand();
-    //stand_id = setInterval(dance_stand, 120);
 });
 
-function dance() {
+function cheerlead() {
+    cheer_ani[0][cheer_idx].style.display = "none";
+    cheer_idx = (cheer_idx + 1) % 48;
+    cheer_ani[0][cheer_idx].style.display = "block";
+}
+
+function dance_command() {
     prev_frame.style.display = "none";
+    var dir;
     var length = printq.length;
     var each_delay = (length<6) ? 90 : 60;
     var full_delay = each_delay * 12;
 
     for (var i=0; i<length; i++) {
-        //console.log(printq[0] + " " + timeout);
         switch (printq.shift()) {
-        case "Left":
-            setTimeout(dance_left, i*full_delay, each_delay, 0);
-            break;
-        case "Right":
-            setTimeout(dance_right, i*full_delay, each_delay, 0);
-            break;
-        case "Up":
-            setTimeout(dance_up, i*full_delay, each_delay, 0);
-            break;
-        case "Down":
-            setTimeout(dance_down, i*full_delay, each_delay, 0);
-            break;
+            case "Left": dir = 1; break;
+            case "Right": dir = 2; break;
+            case "Up": dir = 3; break;
+            case "Down": dir = 4; break;
         }
+        setTimeout(dance, i*full_delay, each_delay, dir, 0);
     }
     setTimeout(dance_stand, length*full_delay);
 }
 
 function dance_stand() {
     prev_frame.style.display = "none";
-    dancer_stand[stand_idx].style.display = "block";
-    prev_frame = dancer_stand[stand_idx];
+    dancer_ani[0][stand_idx].style.display = "block";
+    prev_frame = dancer_ani[0][stand_idx];
     stand_idx = (stand_idx + 1) % 6;
     if (printq.length == 0)
         setTimeout(dance_stand, 120);
     else
-        setTimeout(dance, 120);
+        setTimeout(dance_command, 120);
 }
 
-function dance_left(delay, idx) {
+function dance(delay, dir, idx) {
     prev_frame.style.display = "none";
-    dancer_left[idx].style.display = "block";
-    prev_frame = dancer_left[idx];
+    dancer_ani[dir][idx].style.display = "block";
+    prev_frame = dancer_ani[dir][idx];
 
     if (idx < 11)
-        setTimeout(dance_left, delay, delay, idx+1);
-}
-
-function dance_right(delay, idx) {
-    prev_frame.style.display = "none";
-    dancer_right[idx].style.display = "block";
-    prev_frame = dancer_right[idx];
-
-    if (idx < 11)
-        setTimeout(dance_right, delay, delay, idx+1);
-}
-
-function dance_up(delay, idx) {
-    prev_frame.style.display = "none";
-    dancer_up[idx].style.display = "block";
-    prev_frame = dancer_up[idx];
-
-    if (idx < 11)
-        setTimeout(dance_up, delay, delay, idx+1);
-}
-
-function dance_down(delay, idx) {
-    prev_frame.style.display = "none";
-    dancer_down[idx].style.display = "block";
-    prev_frame = dancer_down[idx];
-
-    if (idx < 11)
-        setTimeout(dance_down, delay, delay, idx+1);
+        setTimeout(dance, delay, delay, dir, idx+1);
 }

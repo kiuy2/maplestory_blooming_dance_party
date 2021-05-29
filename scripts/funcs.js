@@ -1,22 +1,11 @@
-class Queue {
-    constructor() {
-      this._arr = [];
-    }
-    enqueue(item) {
-      this._arr.push(item);
-    }
-    dequeue() {
-      return this._arr.shift();
-    }
-}
-
 const success = new Audio("audio/success.mp3");
 const fail = new Audio("audio/NoMatch.mp3");
 const erase = new Audio("audio/mouseOver.mp3");
 const enter = new Audio("audio/shield_appear.mp3");
 const helpUp = new Audio("audio/MenuUp.mp3");
 const helpDown = new Audio("audio/MenuDown.mp3");
-var bgm = new Audio;
+var bgm = [];
+var cur_bgm = 0;
 var help_visible = true;
 var printq = [];
 const inputq = [];
@@ -28,8 +17,12 @@ helpUp.volume = 0.5;
 helpDown.volume = 0.5;
 
 $(document).ready(function() {
-    bgm = document.getElementById("bgm");
-    bgm.volume = 0.3;
+    bgm.push(new Audio);
+    bgm[0] = document.getElementById("bgm1");
+    bgm[0].volume = 0.3;
+    bgm.push(new Audio);
+    bgm[1] = document.getElementById("bgm2");
+    bgm[1].volume = 0.3;
 });
 
 document.addEventListener('keydown', function(event) {
@@ -54,10 +47,24 @@ document.addEventListener('keydown', function(event) {
             inputq.push("Down");
             img.src = "images/Down.png";
             break;
+        case "Digit1" :
+            cur_bgm = 0;
+            if (!bgm[1].paused) {
+                bgm[1].pause();
+                bgm[0].play();
+            }
+            break;
+        case "Digit2" :
+            cur_bgm = 1;
+            if (!bgm[0].paused) {
+                bgm[0].pause();
+                bgm[1].play();
+            }
+            break;
         case "Space":
-            if (bgm.paused)
-                bgm.play();
-            else bgm.pause();
+            if (bgm[cur_bgm].paused)
+                bgm[cur_bgm].play();
+            else bgm[cur_bgm].pause();
             break;
         case "Backspace":
             erase.currentTime = 0;
@@ -71,10 +78,6 @@ document.addEventListener('keydown', function(event) {
             input.innerHTML = "";
             printq = printq.concat(inputq);
             inputq.length = 0;
-            // var arrows = input.childNodes;
-            // for (var i=arrows.length-1; i>=0; i--) {
-            //     arrows[i].remove();
-            // }
             break;
         case "KeyH":
             if (help_visible) {
