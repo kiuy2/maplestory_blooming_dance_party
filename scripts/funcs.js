@@ -1,11 +1,25 @@
-var success = new Audio("audio/success.mp3");
-var fail = new Audio("audio/NoMatch.mp3");
-var erase = new Audio("audio/mouseOver.mp3");
-var enter = new Audio("audio/shield_appear.mp3");
-var helpUp = new Audio("audio/MenuUp.mp3");
-var helpDown = new Audio("audio/MenuDown.mp3");
+class Queue {
+    constructor() {
+      this._arr = [];
+    }
+    enqueue(item) {
+      this._arr.push(item);
+    }
+    dequeue() {
+      return this._arr.shift();
+    }
+}
+
+const success = new Audio("audio/success.mp3");
+const fail = new Audio("audio/NoMatch.mp3");
+const erase = new Audio("audio/mouseOver.mp3");
+const enter = new Audio("audio/shield_appear.mp3");
+const helpUp = new Audio("audio/MenuUp.mp3");
+const helpDown = new Audio("audio/MenuDown.mp3");
 var bgm = new Audio;
 var help_visible = true;
+var printq = [];
+const inputq = [];
 
 success.volume = 0.1;
 erase.volume = 0.5;
@@ -19,21 +33,25 @@ $(document).ready(function() {
 });
 
 document.addEventListener('keydown', function(event) {
-    var input = document.getElementById("input");
-    var img = document.createElement("img");
+    const input = document.getElementById("input");
+    const img = document.createElement("img");
     img.className = "arrows";
 
     switch(event.code) {
         case "ArrowLeft":
+            inputq.push("Left");
             img.src = "images/Left.png";
             break;
         case "ArrowRight":
+            inputq.push("Right");
             img.src = "images/Right.png";
             break;
         case "ArrowUp":
+            inputq.push("Up");
             img.src = "images/Up.png";
             break;
         case "ArrowDown":
+            inputq.push("Down");
             img.src = "images/Down.png";
             break;
         case "Space":
@@ -45,14 +63,18 @@ document.addEventListener('keydown', function(event) {
             erase.currentTime = 0;
             erase.play();
             input.lastElementChild.remove();
+            inputq.pop();
             break;
         case "Enter":
             enter.currentTime = 0;
             enter.play();
-            var arrows = input.childNodes;
-            for (var i=arrows.length-1; i>=0; i--) {
-                arrows[i].remove();
-            }
+            input.innerHTML = "";
+            printq = printq.concat(inputq);
+            inputq.length = 0;
+            // var arrows = input.childNodes;
+            // for (var i=arrows.length-1; i>=0; i--) {
+            //     arrows[i].remove();
+            // }
             break;
         case "KeyH":
             if (help_visible) {
@@ -71,7 +93,7 @@ document.addEventListener('keydown', function(event) {
 
     if (img.src == "") return;
     else {
-        if (input.childNodes.length < 11) {
+        if (input.childNodes.length < 10) {
             success.currentTime = 0;
             success.play();
             input.appendChild(img);
