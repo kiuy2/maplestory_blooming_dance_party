@@ -76,7 +76,6 @@ function bgmbar_rewind_ani() {
     bgmbar[cur_bgm].firstChild.style.left = bgmbar_x - bgmbar_width[cur_bgm];
     bgmbar[cur_bgm].lastChild.style.left = bgmbar_x - bgmbar_width[cur_bgm];
     bgmbar_x = Math.floor(bgmbar_x/8*7);
-    console.log(bgmbar_x);
     if (bgmbar_x > 0) setTimeout(bgmbar_rewind_ani, 30);
     else {
         bgm[cur_bgm].play();
@@ -103,9 +102,13 @@ function change_bgm(to_bgm) {
         rewind.currentTime = 0;
         rewind.play();
         bgmbar_rewind_ani();
-        return;
     }
-    cur_bgm = to_bgm;
+    else {
+        cur_bgm = to_bgm;
+        bgmbar_x = 0;
+        bgmbar[cur_bgm].firstChild.style.left = bgmbar_x - bgmbar_width[cur_bgm];
+        bgmbar[cur_bgm].lastChild.style.left = bgmbar_x - bgmbar_width[cur_bgm];
+    }
 }
 
 document.addEventListener('keydown', function(event) {
