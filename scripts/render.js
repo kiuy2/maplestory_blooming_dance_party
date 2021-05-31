@@ -80,7 +80,7 @@ $(document).ready(function() {
         dancer_ani[0][i].style.display = "none";
         dancer.appendChild(dancer_ani[0][i]);
     }
-    // dance (each directions)
+    // dance (left, right, up, down)
     for (var i=1; i<5; i++) {
         dancer_ani[i] = new Array();
         for (var j=0; j<12; j++) {
