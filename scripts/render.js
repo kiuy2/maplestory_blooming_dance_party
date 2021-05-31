@@ -1,8 +1,11 @@
 const cheer_ani = [];
 const dancer_ani = [];
-var prev_frame;
+var prev_frame = new Array(3);
 var cheer_idx = 0;
 var stand_idx = 0;
+
+var cheer_info;
+const cheer_head = [ { "x": 29, "y": 40 }, { "x": 27, "y": 40 } ];
 
 $(document).ready(function() {
     const objects = document.getElementById("objects");
@@ -18,6 +21,20 @@ $(document).ready(function() {
     NPC.style.left = "1169px";
     NPC.src = "images/9062540.gif";
     objects.appendChild(NPC);
+
+    const requestURL = 'https://github.com/kiuy2/maplestory_blooming_dance_party/blob/main/data/springDance.json';
+    const request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    request.onload = function() {
+        cheer_info = request.response;
+        console.log(cheer_info[0][0][0].origin.x);
+        console.log(cheer_info[0][0][0].origin.y);
+        console.log(cheer_info[0][0][0].neck.x);
+        console.log(cheer_info[0][0][0].neck.y);
+    }
+
     // cheer0
     cheer0.id = "cheer_0";
     cheer0.style.position = "absolute";
@@ -59,7 +76,7 @@ $(document).ready(function() {
     dancer_ani[0] = new Array();
     for (var i=0; i<6; i++) {
         dancer_ani[0].push(document.createElement("img"));
-        dancer_ani[0][i].src = "images/9062538.img.0.frames/"+String(i*120)+".png";
+        dancer_ani[0][i].src = "images/9062538.img/9062538.img.0.frames/"+String(i*120)+".png";
         dancer_ani[0][i].style.display = "none";
         dancer.appendChild(dancer_ani[0][i]);
     }
@@ -68,7 +85,7 @@ $(document).ready(function() {
         dancer_ani[i] = new Array();
         for (var j=0; j<12; j++) {
             dancer_ani[i].push(document.createElement("img"));
-            dancer_ani[i][j].src = "images/9062538.img."+i+".frames/"+String(j*90)+".png";
+            dancer_ani[i][j].src = "images/9062538.img/9062538.img."+i+".frames/"+String(j*90)+".png";
             dancer_ani[i][j].style.display = "none";
             dancer.appendChild(dancer_ani[i][j]);
         }
@@ -76,7 +93,7 @@ $(document).ready(function() {
 
     //setInterval(cheerlead, 90);
     dancer_ani[0][0].style.display = "block";
-    prev_frame = dancer_ani[0][0];
+    prev_frame[0] = dancer_ani[0][0];
     dance_stand();
 });
 
@@ -87,7 +104,7 @@ $(document).ready(function() {
 // }
 
 function dance_command() {
-    prev_frame.style.display = "none";
+    prev_frame[0].style.display = "none";
     var dir;
     var length = printq.length;
     var each_delay = (length<6) ? 90 : 60;
@@ -106,9 +123,9 @@ function dance_command() {
 }
 
 function dance_stand() {
-    prev_frame.style.display = "none";
+    prev_frame[0].style.display = "none";
     dancer_ani[0][stand_idx].style.display = "block";
-    prev_frame = dancer_ani[0][stand_idx];
+    prev_frame[0] = dancer_ani[0][stand_idx];
     stand_idx = (stand_idx + 1) % 6;
     if (printq.length == 0)
         setTimeout(dance_stand, 120);
@@ -117,9 +134,9 @@ function dance_stand() {
 }
 
 function dance(delay, dir, idx) {
-    prev_frame.style.display = "none";
+    prev_frame[0].style.display = "none";
     dancer_ani[dir][idx].style.display = "block";
-    prev_frame = dancer_ani[dir][idx];
+    prev_frame[0] = dancer_ani[dir][idx];
 
     if (idx < 11)
         setTimeout(dance, delay, delay, dir, idx+1);
