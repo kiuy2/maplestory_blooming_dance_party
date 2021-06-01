@@ -1,4 +1,54 @@
-const cheer_head = [
+const emotions = [ "default", "blink_0", "blink_1", "wink", "chu" ];
+
+const NPCs_coord = [
+    { top: 630, left: 200 }, 
+    { top: 630, left: 1270 },
+    { top: 190, left: 1100 }
+];
+const NPCs_info = [
+    [
+        {
+            origin: { x: 81, y: 139 },
+            length: 12,
+            delay: 90
+        },
+        {
+            origin: { x: 83, y: 132 },
+            length: 10,
+            delay: 90
+        }
+    ],
+    [
+        {
+            origin: { x: 71, y: 113 },
+            length: 8,
+            delay: 90
+        },
+        {
+            origin: { x: 61, y: 106 },
+            length: 7,
+            delay: 90
+        }
+    ],
+    [
+        {
+            origin: { x: 82, y: 130 },
+            length: 16,
+            delay: 180
+        },
+        {
+            origin: { x: 82, y: 130 },
+            length: 6,
+            delay: 150
+        }
+    ]
+]
+
+const cheer_coord = [
+    { top: 620, left: 440 }, 
+    { top: 620, left: 1040 } 
+];
+const cheer_head_info = [
     {
         size: { w: 60, h: 45 },
         origin: { x: 28, y: 39 },
@@ -8,9 +58,7 @@ const cheer_head = [
         origin: { x: 27, y: 39 }
     }
 ];
-const emotions = [ "default", "blink_0", "blink_1", "wink", "chu" ];
-
-const cheer_body = [
+const cheer_body_info = [
     // [0]: stand
     [
         {
