@@ -38,9 +38,11 @@ $(document).ready(function() {
     bgmbox.appendChild(bgmsign[1]);
 
     bgm[0].volume = 0.3;
+    bgm[0].loop = true;
     bgm[0].controls = true;
     bgmbox.appendChild(bgm[0]);
     bgm[1].volume = 0.3;
+    bgm[1].loop = true;
     bgmbox.appendChild(bgm[1]);
     bgmbar[0].className = "bgmbar";
     bgmbar[1].className = "bgmbar";
