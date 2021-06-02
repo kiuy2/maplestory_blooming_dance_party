@@ -2,17 +2,20 @@ const dancer_ani = new Array(5);
 const cheer_head_ani = new Array(2);
 const cheer_body_ani = [ new Array(5), new Array(5) ];
 const npc_ani = [ new Array(2), new Array(2), new Array(2) ];
+var dancer_idx = 0;
+var cheer_id = 0;
+var cheer_idx = 0;
+var npcs_id = [ 0, 0, 0 ];
+var npcs_idx = [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ];
+var dancer_show = true;
+var cheer_show = true;
+var npcs_show = true;
 var prev_frame = {
     dancer: undefined,
     cheer_head: new Array(2),
     cheer_body: new Array(2),
     npcs: new Array(3)
 };
-var stand_idx = 0;
-var npcs_id = [ 0, 0, 0 ];
-var npcs_idx = [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ];
-var cheer_id = 0;
-var cheer_idx = 0;
 
 $(document).ready(function() {
     const objects = document.getElementById("objects");
@@ -152,7 +155,8 @@ var skip = 0;
 function NPC_dance() {
     for (var i=0; i<3-skip; i++) {
         prev_frame['npcs'][i].style.display = "none";
-        npc_ani[i][0][npcs_idx[i][0]].style.display = "block";
+        if (npcs_show)
+            npc_ani[i][0][npcs_idx[i][0]].style.display = "block";
         prev_frame['npcs'][i] = npc_ani[i][0][npcs_idx[i][0]];
         npcs_idx[i][0] = (npcs_idx[i][0] + 1) % NPCs_info[i][0].length;
     }
@@ -162,7 +166,8 @@ function NPC_dance() {
 function NPC_fever1() {
     for (var i=0; i<2; i++) {
         prev_frame['npcs'][i].style.display = "none";
-        npc_ani[i][1][npcs_idx[i][1]].style.display = "block";
+        if (npcs_show)
+            npc_ani[i][1][npcs_idx[i][1]].style.display = "block";
         prev_frame['npcs'][i] = npc_ani[i][1][npcs_idx[i][1]];
         npcs_idx[i][1] = (npcs_idx[i][1] + 1) % NPCs_info[i][1].length;
     }
@@ -170,7 +175,8 @@ function NPC_fever1() {
 
 function NPC_fever2() {
     prev_frame['npcs'][2].style.display = "none";
-    npc_ani[2][1][npcs_idx[2][1]].style.display = "block";
+    if (npcs_show)
+        npc_ani[2][1][npcs_idx[2][1]].style.display = "block";
     prev_frame['npcs'][2] = npc_ani[2][1][npcs_idx[2][1]];
     npcs_idx[2][1] = (npcs_idx[2][1] + 1) % NPCs_info[2][1].length;
 }
@@ -191,14 +197,16 @@ function cheerleading() {
         cheerleader[0].style.left = origin[0] - cheer_animation[cheer_idx].offset;
         cheerleader[1].style.left = origin[1] + cheer_animation[cheer_idx].offset;
     }
-    cheer_head_ani[0][emo].style.left = -cheer_body_info[act][idx].neck.x + cheer_head_info[0].origin.x - cheer_head_info[0].size.w;
-    cheer_head_ani[0][emo].style.top = cheer_body_info[act][idx].neck.y - cheer_head_info[0].origin.y;
-    cheer_head_ani[0][emo].style.display = "block";
-    cheer_head_ani[1][emo].style.left = cheer_body_info[act][idx].neck.x - cheer_head_info[1].origin.x;
-    cheer_head_ani[1][emo].style.top = cheer_body_info[act][idx].neck.y - cheer_head_info[1].origin.y;
-    cheer_head_ani[1][emo].style.display = "block";
-    cheer_body_ani[0][act][idx].style.display = "block";
-    cheer_body_ani[1][act][idx].style.display = "block";
+    if (cheer_show) {
+        cheer_head_ani[0][emo].style.left = -cheer_body_info[act][idx].neck.x + cheer_head_info[0].origin.x - cheer_head_info[0].size.w;
+        cheer_head_ani[0][emo].style.top = cheer_body_info[act][idx].neck.y - cheer_head_info[0].origin.y;
+        cheer_head_ani[0][emo].style.display = "block";
+        cheer_head_ani[1][emo].style.left = cheer_body_info[act][idx].neck.x - cheer_head_info[1].origin.x;
+        cheer_head_ani[1][emo].style.top = cheer_body_info[act][idx].neck.y - cheer_head_info[1].origin.y;
+        cheer_head_ani[1][emo].style.display = "block";
+        cheer_body_ani[0][act][idx].style.display = "block";
+        cheer_body_ani[1][act][idx].style.display = "block";
+    }
     prev_frame['cheer_head'][0] = cheer_head_ani[0][emo];
     prev_frame['cheer_head'][1] = cheer_head_ani[1][emo];
     prev_frame['cheer_body'][0] = cheer_body_ani[0][act][idx];
@@ -208,7 +216,6 @@ function cheerleading() {
 }
 
 function dance_command() {
-    console.log("entry");
     var dir;
     var length = printq.length;
     var each_delay = (length<6) ? 90 : 60;
@@ -237,9 +244,10 @@ function dance_command() {
 
 function dance_stand() {
     prev_frame['dancer'].style.display = "none";
-    dancer_ani[0][stand_idx].style.display = "block";
-    prev_frame['dancer'] = dancer_ani[0][stand_idx];
-    stand_idx = (stand_idx + 1) % 6;
+    if (dancer_show)
+        dancer_ani[0][dancer_idx].style.display = "block";
+    prev_frame['dancer'] = dancer_ani[0][dancer_idx];
+    dancer_idx = (dancer_idx + 1) % 6;
     if (printq.length == 0)
         setTimeout(dance_stand, 120);
     else
@@ -248,7 +256,8 @@ function dance_stand() {
 
 function dance(delay, dir, idx) {
     prev_frame['dancer'].style.display = "none";
-    dancer_ani[dir][idx].style.display = "block";
+    if (dancer_show)
+        dancer_ani[dir][idx].style.display = "block";
     prev_frame['dancer'] = dancer_ani[dir][idx];
 
     if (idx < 11)

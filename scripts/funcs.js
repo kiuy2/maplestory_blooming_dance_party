@@ -141,6 +141,15 @@ document.addEventListener('keydown', function(event) {
         case "Digit2" :
             if (cur_bgm == 0) change_bgm(1);
             break;
+        case "Digit3" :
+            dancer_show = !dancer_show;
+            break;
+        case "Digit4" :
+            cheer_show = !cheer_show;
+            break;
+        case "Digit5" :
+            npcs_show = !npcs_show;
+            break;
         case "Space":
             if (bgm[cur_bgm].paused && !isRewind) {
                 bgm[cur_bgm].play();
