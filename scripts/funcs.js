@@ -119,18 +119,22 @@ document.addEventListener('keydown', function(event) {
     img.className = "arrows";
 
     switch(event.code) {
+        case "Numpad4":
         case "ArrowLeft":
             inputq.push("Left");
             img.src = "images/Left.png";
             break;
+        case "Numpad6":
         case "ArrowRight":
             inputq.push("Right");
             img.src = "images/Right.png";
             break;
+        case "Numpad8":
         case "ArrowUp":
             inputq.push("Up");
             img.src = "images/Up.png";
             break;
+        case "Numpad2":
         case "ArrowDown":
             inputq.push("Down");
             img.src = "images/Down.png";
@@ -166,6 +170,7 @@ document.addEventListener('keydown', function(event) {
             input.lastElementChild.remove();
             inputq.pop();
             break;
+        case "NumpadEnter":
         case "Enter":
             enter.currentTime = 0;
             enter.play();
