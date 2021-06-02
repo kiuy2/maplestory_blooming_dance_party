@@ -121,11 +121,13 @@ document.addEventListener('keydown', function(event) {
     switch(event.code) {
         case "Numpad4":
         case "ArrowLeft":
+            event.preventDefault();
             inputq.push("Left");
             img.src = "images/Left.png";
             break;
         case "Numpad6":
         case "ArrowRight":
+            event.preventDefault();
             inputq.push("Right");
             img.src = "images/Right.png";
             break;

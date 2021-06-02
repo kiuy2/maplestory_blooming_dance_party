@@ -76,7 +76,6 @@ p {
     background-image: url("../images/background_back.png");
     background-repeat: no-repeat;
     background-position: left top;
-    /*background-attachment: scroll;*/
 }
 
 #input {
