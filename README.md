@@ -31,5 +31,5 @@
 **숫자 3, 4, 5번**키를 사용해 원하지 않는 캐릭터 애니메이션은 물론<br>
 **H**키를 이용해 도움말까지 감출 수 있습니다!<br>
 ***
-![alt feverdance](images/md/crazydance.gif)<br>
+![alt feverdance](images/md/fever_dance.gif)<br>
 그럼 이제 신나게 블루밍 댄스 파티를 즐겨주세요!
